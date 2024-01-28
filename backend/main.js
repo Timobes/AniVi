@@ -1,14 +1,16 @@
-const express = require("express");
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const express = require('express')
 const app = express()
+
+const {response, json} = require("express");
+const cors = require('cors')
+const mainRouter = require('./router/mainRouter')
+const bodyParser = require('body-parser')
+
 const port = 8080
 
-app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
-);
+app.use(express.static("uploads"))
+app.use(cors())
+app.use(express.json())
 
 app.use(
     cors({
@@ -23,13 +25,17 @@ app.use(
     })
 );
 
-app.use(express.json())
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+);
 
-app.get('/',(req, res) =>{
-    res.send('Home')
+app.use('/api', mainRouter)
+
+app.get('/', function (req, res){
+    res.send('<h1>Hello</h1>')
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.listen(port, console.log(`Бэк работает на порту ${port}`))
 
