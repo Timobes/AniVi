@@ -1,4 +1,4 @@
-const Router = require('express')
+    const Router = require('express')
 const animeRouter = new Router()
 
 const tokenMeddleware = require('../meddleware/tokenMeddleware')
