@@ -1,6 +1,9 @@
 import ReactPlayer from "react-player";
 import animeIMG from "../../../img/aniBack.png"
+import {useParams} from "react-router-dom";
 export function AnimePage() {
+    const {id} = useParams()
+
     return (
         <div className="animepage">
             <p className="AP-name">Name</p>
