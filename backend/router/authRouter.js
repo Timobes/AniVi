@@ -9,6 +9,7 @@ authRouter.post('/reg', authController.reg)
 // Войти в акк
 authRouter.post('/log', authController.auth)
 
+authRouter.get('/profile', authController.profile)
 
 // Верификация
 

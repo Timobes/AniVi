@@ -1,7 +1,28 @@
 import random from "../../img/random.svg"
 import {Link} from "react-router-dom";
-// import search from "../../img/search.svg"
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {clearToken} from "../../state/slice/authSlice";
 export function Header() {
+    const [data, setData] = useState([])
+    const token = useSelector((state) => state.auth.value)
+    const dispatch = useDispatch()
+    // dispatch(clearToken())
+    
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/auth/profile", {headers: {"token": token}})
+            .then((response) => {
+                setData(response.data)
+                console.log(data)
+            })
+
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [token]);
+
     return (
         <header className="header">
             <Link to="/main">
@@ -14,11 +35,24 @@ export function Header() {
             {/*<img src={search} alt="" className="search-btn"/>*/}
 
             <button className="rand-btn"><img src={random} alt="rand-btn"/></button>
-
-            <div className="profile">
-                <p className="username">Name</p>
-                <img src="" alt="avatar" className="avatar"/>
-            </div>
+            {
+                token
+                    ?   <div className="profile">
+                            <Link to="/profile">
+                                {data.map((user) => (
+                                    <p className="username">{user.username}</p>
+                                ))}
+                            </Link>
+                        </div>
+                    :
+                        <div>
+                            Вы не авторизированны!
+                            <br/>
+                            <Link to="/login">Войти</Link>
+                            <br/>
+                            <Link to="/reg">Зарегаться</Link>
+                        </div>
+            }
         </header>
     )
 }

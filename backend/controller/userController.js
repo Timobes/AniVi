@@ -16,13 +16,6 @@ class UserController {
             console.log(e)
         }
     }
-    async createUser(req, res) {
-        try {
-
-        } catch (e) {
-            console.log(e)
-        }
-    }
     async deleteUser(req, res) {
         try {
 

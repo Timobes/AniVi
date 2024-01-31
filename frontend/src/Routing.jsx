@@ -4,6 +4,9 @@ import {Main} from "./component/main/Main";
 import {AnimePage} from "./component/main/animeList/AnimePage";
 import {Footer} from "./component/footer/Footer";
 import {Profile} from "./component/header/Profile";
+import {Reg} from "./component/main/auth/Reg";
+import {Login} from "./component/main/auth/Login";
+import {Admin} from "./component/ADpanel/Admin";
 export function Routing() {
     return (
         <BrowserRouter>
@@ -11,8 +14,12 @@ export function Routing() {
             <Routes>
                 <Route path="/main" element={<Main />} />
                 <Route path="/anime/:id" element={<AnimePage />} />
-                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/profile" element={<Profile />} />
 
+                <Route path="/reg" element={<Reg />} />
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/admin" element={<Admin />} />
 
                 <Route path="*" element={<h1>Error!</h1>} />
             </Routes>

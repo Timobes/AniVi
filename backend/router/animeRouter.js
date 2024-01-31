@@ -1,9 +1,7 @@
-    const Router = require('express')
+const Router = require('express')
 const animeRouter = new Router()
-
 const tokenMeddleware = require('../meddleware/tokenMeddleware')
 const animeController = require('../controller/animeController')
-
 const upload = require('../meddleware/fileUpload')
 
 // Вывод всех аниме
@@ -13,11 +11,10 @@ animeRouter.get('/', animeController.getAllAnime)
 animeRouter.get('/:id', animeController.getAnime)
 
 // Поиск серии по id аниме
-// animeRouter.get('/:id/:ep', animeController.getEpAnime)
+animeRouter.get('/ep/:id', animeController.getEpAnime)
 
 // Добавить серию
 animeRouter.post('/series', upload.single('anime'), tokenMeddleware, animeController.addEpAnime)
-
 // Создание аниме
 animeRouter.post('/', tokenMeddleware, animeController.createAnime)
 
@@ -26,9 +23,5 @@ animeRouter.put('/:id', tokenMeddleware, animeController.updateAnime)
 
 // Удалить аниме по id
 animeRouter.delete('/:id', tokenMeddleware, animeController.deleteAnime)
-
-// "/:id/:ep"
-// const id = req.params.id
-// const ep = req.params.ep
 
 module.exports = animeRouter

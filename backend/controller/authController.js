@@ -5,21 +5,21 @@ const {decode} = require("jsonwebtoken");
 class authController {
     async reg(req, res) {
         try{
-            const {username, email, passwords} = req.body
-            console.log(email, passwords)
-
-            const JWTpass = jwt.sign({password: passwords}, "secret", )
+            const {email, passwords, username} = req.body
+            console.log(email, passwords, username)
+            const JWTpass = jwt.sign({username: username, password: passwords}, "secret", )
             console.log(JWTpass)
 
-            const users = await db.query('INSERT INTO users(username, email, passwords) VALUES ($1, $2, $3)', [username, email, JWTpass])
+            const users = await db.query(`INSERT INTO users (email, passwords, username) VALUES ($1, $2, $3) RETURNING *`, [email, JWTpass, username])
+            console.log(users.rows)
 
-            res.json('Вы создали акк!', JWTpass)
+            res.json({message: 'Вы создали акк!', token: JWTpass})
         } catch (e) {
             console.log(e)
         }
     }
 
-    async auth(req, res, next) {
+    async auth(req, res) {
         try{
             const {email, passwords} = req.body
 
@@ -30,7 +30,7 @@ class authController {
                 const users = await db.query("SELECT * FROM users WHERE email = $1 AND passwords = $2", [email, pass.rows[0].passwords])
 
                 if(users.rows) {
-                    res.json({"token": pass.rows[0].passwords})
+                    res.json(pass.rows[0].passwords)
                 } else {
                     res.json('Пользователя нет')
                 }
@@ -41,6 +41,13 @@ class authController {
             console.log(e)
             res.json('Ошибка')
         }
+    }
+
+    async profile(req, res){
+        const token = req.headers.token
+
+        const users = await db.query("SELECT * FROM users WHERE passwords = $1", [token])
+        res.json(users.rows)
     }
 
     async logout(req, res) {

@@ -5,7 +5,7 @@ const pool = new Pool({
     password: 'timober21',
     host: 'localhost',
     port: '5432',
-    database: 'aniweb'
+    database: 'anivi'
 })
 
 module.exports = pool
