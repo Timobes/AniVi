@@ -25,12 +25,13 @@ export function Login() {
     return (
         <div className="login">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="email" {...register('email')} placeholder="Почта"/>
+                <p className="login-name">Вход</p>
+                <input type="email" {...register('email')} placeholder="Почта" className="login-input"/>
                 <br/>
-                <input type="password" {...register('passwords')} placeholder="Пароль"/>
+                <input type="password" {...register('passwords')} placeholder="Пароль" className="login-input"/>
                 <br/>
 
-                <input type="submit" placeholder="Зарегистрироваться"/>
+                <input type="submit" className="login-btn" value="Войти"/>
             </form>
         </div>
     )

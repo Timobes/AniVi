@@ -36,7 +36,7 @@ export function Admin() {
 
                 <input type="submit" placeholder="Создать аниме"/>
             </form>
-
+            <hr/>
             <LoadEp />
         </div>
     )

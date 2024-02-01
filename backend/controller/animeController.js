@@ -81,6 +81,16 @@ class animeController {
             console.log(e)
         }
     }
+    
+    async search(req, res){
+        try{
+            const query = req.query.query;
+            const anime = db.query("SELECT * FROM anime_table WHERE anime_title_rus = $1 OR anime_title_eng = $1", [query])
+            res.json(anime.rows)
+        } catch (e) {
+            console.log(e)
+        }        
+    }
 }
 
 module.exports = new animeController

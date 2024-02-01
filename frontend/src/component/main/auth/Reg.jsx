@@ -22,14 +22,14 @@ export function Reg() {
     return (
         <div className="reg">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="email" {...register('email')} placeholder="Почта"/>
+                <input type="email" {...register('email')} placeholder="Почта" className="login-input"/>
                 <br/>
-                <input type="password" {...register('passwords')} placeholder="Пароль"/>
+                <input type="password" {...register('passwords')} placeholder="Пароль" className="login-input"/>
                 <br/>
-                <input type="text" {...register('username')} placeholder="Никнэйм"/>
+                <input type="text" {...register('username')} placeholder="Никнэйм" className="login-input"/>
                 <br/>
 
-                <input type="submit" placeholder="Зарегистрироваться"/>
+                <input type="submit" className="login-btn" value="Зарегистрироваться"/>
             </form>
         </div>
     )

@@ -4,6 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {clearToken} from "../../state/slice/authSlice";
+import {Search} from "./Search";
+import Popup from "reactjs-popup";
+import {Login} from "../main/auth/Login";
+import {Reg} from "../main/auth/Reg";
 export function Header() {
     const [data, setData] = useState([])
     const token = useSelector((state) => state.auth.value)
@@ -33,6 +37,7 @@ export function Header() {
 
             <input type="text" className="search-input" placeholder={'Поиск по сайту...'}/>
             {/*<img src={search} alt="" className="search-btn"/>*/}
+            {/*<Search />*/}
 
             <button className="rand-btn"><img src={random} alt="rand-btn"/></button>
             {
@@ -40,17 +45,28 @@ export function Header() {
                     ?   <div className="profile">
                             <Link to="/profile">
                                 {data.map((user) => (
-                                    <p className="username">{user.username}</p>
+                                    <>
+                                        <p className="username">{user.username}</p>
+                                        {
+                                            user.roles == 9
+                                                ? <Link to="/admin">Admin panel</Link>
+
+                                                : <></>
+
+                                        }
+                                    </>
                                 ))}
                             </Link>
                         </div>
                     :
                         <div>
-                            Вы не авторизированны!
-                            <br/>
-                            <Link to="/login">Войти</Link>
-                            <br/>
-                            <Link to="/reg">Зарегаться</Link>
+                                <Popup trigger={<button className="header-login-btn"> Войти</button>} modal position="center">
+                                    <Login />
+                                </Popup>
+                            <hr/>
+                                <Popup trigger={<button className="header-login-btn">Зарегаться</button>} modal position="center">
+                                    <Reg />
+                                </Popup>
                         </div>
             }
         </header>

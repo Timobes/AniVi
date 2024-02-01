@@ -130,7 +130,7 @@ a:visited {
 
   color: #FFF;
   text-align: center;
-  font-size: 27px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 91.523%;
@@ -264,8 +264,83 @@ a:visited {
 
 }
 
-.footer {
+.login {
+  display: flex;
 
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  width: 340px;
+  height: 340px;
+
+  color: #fff;
+  background-color: #14191E;
+}
+
+.reg {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  width: 340px;
+  height: 340px;
+
+  color: #fff;
+  background-color: #14191E;
+}
+
+.header-login-btn {
+  font-size: 25px;
+  border: 0 solid #14191E;
+  color: #fff;
+  background-color: #14191E;
+
+}
+
+.header-login-btn:hover {
+  cursor: pointer;
+}
+
+.login-name {
+  font-size: 28px;
+}
+
+.login-input {
+  width: 270px;
+  height: 50px;
+
+  font-size: 22px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  border-radius: 5px;
+
+  border: 0 solid #D9D9D9;
+}
+
+.login-btn {
+  height: 50px;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  font-size: 22px;
+  border: 0 solid #D9D9D9;
+  border-radius: 5px;
+}
+
+
+
+
+.footer {
+  text-align: center;
+  background-color: #14191E;
 }
 
 .foot-text {
