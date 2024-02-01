@@ -32,17 +32,14 @@ class animeController {
             console.log(e)
         }
     }
-
     async addEpAnime(req, res) {
         let anime_episode_name = req.file.originalname
         anime_episode_name = anime_episode_name.replace("_", "/")
-
         const {anime_episode_number, anime_id} = req.body
 
+
+        console.log(anime_episode_name, anime_episode_number)
         const anime = await db.query('INSERT INTO anime_episode(anime_episode_name, anime_episode_number, anime_id) VALUES ($1, $2, $3) RETURNING  *', [anime_episode_name, anime_episode_number, anime_id])
-        // res.json({
-        //     url: `localhost:8080/uploads/${req.file.originalname}`,
-        // })
         console.log(anime.rows)
         res.json('Файл отправлен')
     }

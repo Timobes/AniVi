@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {clearToken} from "../../state/slice/authSlice";
+import {LoadEp} from "./LoadEp";
 export function Admin() {
     const {register, handleSubmit} = useForm()
     const token = useSelector((state) => state.auth.value)
@@ -11,7 +11,6 @@ export function Admin() {
 
             .then((response) => {
                 console.log(response.data)
-                dispatch(clearToken())
             })
 
             .catch((err) => {
@@ -37,6 +36,8 @@ export function Admin() {
 
                 <input type="submit" placeholder="Создать аниме"/>
             </form>
+
+            <LoadEp />
         </div>
     )
 }

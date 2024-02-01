@@ -7,9 +7,9 @@ import {clearToken} from "../../state/slice/authSlice";
 export function Header() {
     const [data, setData] = useState([])
     const token = useSelector((state) => state.auth.value)
+
     const dispatch = useDispatch()
     // dispatch(clearToken())
-    
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/auth/profile", {headers: {"token": token}})
