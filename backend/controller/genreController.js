@@ -20,9 +20,9 @@ class genreController {
         res.json(genre.rows)
     }
 
-    async creategenre(req, res) {
-        const {} = req.body
-        const genre = await db.query("")
+    async addGenre(req, res) {
+        const {genreID, animeID} = req.body
+        const genre = await db.query("INSERT INTO anime_genre(genre_id, anime_id) VALUES ($1, $2) RETURNING *", [genreID, animeID])
 
         res.json(genre.rows)
     }

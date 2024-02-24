@@ -10,4 +10,6 @@ genreRouter.get('/:id', genreController.getGenreId)
 
 genreRouter.get('/anime/:id', genreController.getAnimegenre)
 
+genreRouter.post('/add', genreController.addGenre)
+
 module.exports = genreRouter

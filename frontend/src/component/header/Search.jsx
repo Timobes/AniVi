@@ -1,33 +1,52 @@
-import {useState} from "react";
+import {useEffect,useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
+
 export function Search() {
     const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
-
     const [data, setData] = useState([])
+    const handleSearchChange = (e) => {
+        if (e.target.value === '') {
+            setData([])
+        }
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-        const query = event.target.value;
-
-        axios.get(`http://localhost:8080/api/anime/search?query=${query}`)
-            .then((response) => {
-                setData(response.data)
-            })
-
-            .catch((err) => {
-                console.log(err)
-            })
+        setSearchQuery(e.target.value);
     };
+
+    useEffect(() => {
+        if (searchQuery) {
+            axios.get(`http://localhost:8080/api/anime/search/${searchQuery}`)
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, [searchQuery]);
+
+    console.log(data)
 
     return (
         <div>
-            <input type="text" value={searchQuery} onChange={handleSearchChange} />
-            <ul>
-                {searchResults.map((result, index) => (
-                    <li key={index}>{result}</li>
-                ))}
-            </ul>
+            <input
+                type="text"
+                className="search-input"
+                placeholder={'Поиск по сайту...'}
+                value={searchQuery}
+                onChange={handleSearchChange}
+            />
+
+            <div className="b-search-res">
+                {
+                    data.map((anime) => (
+                        <Link to={`/anime/${anime.anime_id}`}>
+                            <li key={anime.id} className="search-res">{anime.anime_title_eng} / {anime.anime_title_rus}</li>
+                        </Link>
+                    ))
+                }
+            </div>
+
         </div>
     );
 }

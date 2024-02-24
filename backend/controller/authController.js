@@ -6,14 +6,12 @@ class authController {
     async reg(req, res) {
         try{
             const {email, passwords, username} = req.body
-            console.log(email, passwords, username)
             const JWTpass = jwt.sign({username: username, password: passwords}, "secret", )
-            console.log(JWTpass)
 
-            const users = await db.query(`INSERT INTO users (email, passwords, username) VALUES ($1, $2, $3) RETURNING *`, [email, JWTpass, username])
-            console.log(users.rows)
+            const users = await db.query(`INSERT INTO users (email, passwords, username) VALUES ($1, $2, $3) RETURNING *`,
+                [email, JWTpass, username])
 
-            res.json({message: 'Вы создали акк!', token: JWTpass})
+            res.json({message: 'Вы создали аккаунт!', token: JWTpass})
         } catch (e) {
             console.log(e)
         }

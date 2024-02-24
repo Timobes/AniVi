@@ -34,7 +34,7 @@ app.use(
 app.use('/api', mainRouter)
 
 app.get('/', function (req, res){
-    res.send('<h1>Hello</h1>')
+    res.send('<h1>AniVi backend!</h1>')
 })
 
 app.listen(port, console.log(`Бэк работает на порту ${port}`))

@@ -11,7 +11,7 @@ animeRouter.get('/:id', animeController.getAnime)
 // Поиск серии по id аниме
 animeRouter.get('/ep/:id', animeController.getEpAnime)
 // Поисковик
-animeRouter.get('/search', animeController.search)
+animeRouter.get('/search/:query', animeController.search)
 // Добавить серию
 animeRouter.post('/series', upload.single('anime'), tokenMeddleware, animeController.addEpAnime)
 // Создание аниме

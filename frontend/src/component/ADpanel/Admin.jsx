@@ -1,11 +1,11 @@
 import {useForm} from "react-hook-form";
 import axios from "axios";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {LoadEp} from "./LoadEp";
+import {Addgenre} from "./Addgenre";
 export function Admin() {
     const {register, handleSubmit} = useForm()
     const token = useSelector((state) => state.auth.value)
-    const dispatch = useDispatch()
     const onSubmit = (data) => {
         axios.post("http://localhost:8080/api/anime", {anime_title_rus: data.anime_title_rus, anime_title_eng: data.anime_title_eng, anime_title_jap: data.anime_title_jap, description: data.description, years: data.years, poster_url: data.poster_url}, {headers: {"token": token}})
 
@@ -38,6 +38,8 @@ export function Admin() {
             </form>
             <hr/>
             <LoadEp />
+            <hr/>
+            <Addgenre />
         </div>
     )
 }

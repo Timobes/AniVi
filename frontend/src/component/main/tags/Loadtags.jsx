@@ -1,19 +1,15 @@
+import {useEffect, useState} from "react";
+import axios from "axios";
 import {Link} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
-import {allAnime} from "../../ApiServis";
-import {Loadtags} from "../tags/Loadtags";
+export function Loadtags() {
 
-export function AnimeList() {
     const [data, setData] = useState([])
-    const [visibleItems, setVisibleItems] = useState(5); // Начальное количество видимых элементов
-    const handleShowMoreClick = () => {
-        setVisibleItems(prevVisibleItems => prevVisibleItems + 5); // Увеличиваем количество видимых элементов на 3
-    };
+    const [fil, setFil] = useState([])
 
     useEffect(() => {
-        allAnime()
-            .then((data) => {
-                setData(data)
+        axios.get("http://localhost:8080/api/genre")
+            .then((response) => {
+                setData(response.data)
             })
 
             .catch((err) => {
@@ -21,12 +17,34 @@ export function AnimeList() {
             })
     }, []);
 
+    const search = (e) => {
+        let name = e.target.textContent
+
+        axios.get(`http://localhost:8080/api/filter/tags/${name}`)
+            .then((response) => {
+                console.log(response.data)
+                setFil(response.data)
+            })
+
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
-        <>
-            <Loadtags />
+        <ul>
+            {
+                data.map((tags) => (
+                    <li>
+                        <button onClick={search}>
+                            {tags.name}
+                        </button>
+                    </li>
+                ))
+            }
             <div className="animeList">
                 {
-                    data.slice(0, visibleItems).map((anime) => (
+                    fil.map((anime) => (
                         <div>
                             <div>
                                 <Link to={`/anime/${anime.anime_id}`}>
@@ -40,10 +58,7 @@ export function AnimeList() {
                         </div>
                     ))
                 }
-                {visibleItems < data.length && ( 
-                    <button onClick={handleShowMoreClick} className="login-btn">Показать больше</button>
-                )}
             </div>
-        </>
+        </ul>
     )
 }

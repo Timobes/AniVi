@@ -1,3 +1,4 @@
+// Файл bd.js
 const Pool = require('pg-pool')
 
 const pool = new Pool({
@@ -8,3 +9,6 @@ const pool = new Pool({
     database: 'anivi'
 })
 module.exports = pool
+
+
+

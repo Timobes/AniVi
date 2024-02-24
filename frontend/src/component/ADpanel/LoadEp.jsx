@@ -1,15 +1,10 @@
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import {setToken} from "../../state/slice/authSlice";
 
 export function LoadEp() {
     const {register, handleSubmit} = useForm()
     const token = useSelector((state) => state.auth.value)
-    const dispatch = useDispatch()
-
-    console.log('token = ',token)
-
     const onSubmit = (data) => {
         const formData = new FormData()
         formData.append('anime', data.anime[0])

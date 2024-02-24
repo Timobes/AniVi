@@ -1,4 +1,3 @@
-import random from "../../img/random.svg"
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
@@ -8,6 +7,7 @@ import {Search} from "./Search";
 import Popup from "reactjs-popup";
 import {Login} from "../main/auth/Login";
 import {Reg} from "../main/auth/Reg";
+import {RandBtn} from "./RandBtn";
 export function Header() {
     const [data, setData] = useState([])
     const token = useSelector((state) => state.auth.value)
@@ -35,11 +35,10 @@ export function Header() {
                 </div>
             </Link>
 
-            <input type="text" className="search-input" placeholder={'Поиск по сайту...'}/>
-            {/*<img src={search} alt="" className="search-btn"/>*/}
-            {/*<Search />*/}
 
-            <button className="rand-btn"><img src={random} alt="rand-btn"/></button>
+            <Search />
+            {/*<RandBtn />*/}
+
             {
                 token
                     ?   <div className="profile">

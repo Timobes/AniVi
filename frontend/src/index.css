@@ -77,6 +77,29 @@ a:visited {
   font-size: 25px;
 }
 
+.search-res {
+  list-style: none;
+  color: #fff;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.search-res:hover {
+  transition: all 0.5s ease-out;
+  background-color: #eabdbd;
+}
+
+.b-search-res {
+  width: auto;
+  height: auto;
+
+  margin: auto;
+
+
+  position: absolute;
+  background-color: #293440;
+}
+
 /*.search-btn {*/
 /*  position: relative;*/
 /*}*/
