@@ -5,7 +5,6 @@ import {useForm} from "react-hook-form";
 export function Reg() {
     const [data, setData] = useState([])
     const {register, handleSubmit} = useForm()
-
     const onSubmit = (data) => {
         reg({email: data.email, passwords: data.passwords, username: data.username})
             .then((data) => {

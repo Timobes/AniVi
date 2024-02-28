@@ -1,8 +1,7 @@
-import axios from 'axios'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {setToken} from "../../../state/slice/authSlice";
-
+import {auth} from "../../ApiServis";
 export function Login() {
     const {register, handleSubmit} = useForm()
     const token = useSelector((state) => state.auth.value)
@@ -11,10 +10,10 @@ export function Login() {
     console.log('token = ',token)
 
     const onSubmit = (data) => {
-        axios.post("http://localhost:8080/api/auth/log", {email: data.email, passwords: data.passwords}, {headers: {"token": token}})
-            .then((response) => {
-                console.log(response.data)
-                dispatch(setToken(response.data))
+        auth({email: data.email, passwords: data.passwords})
+            .then((data) => {
+                console.log(data)
+                dispatch(setToken(data))
             })
 
             .catch((err) => {

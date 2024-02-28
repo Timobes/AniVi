@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
+import {useSelector} from "react-redux";
+import {createEp} from "../ApiServis";
 
 export function LoadEp() {
     const {register, handleSubmit} = useForm()
@@ -13,13 +13,9 @@ export function LoadEp() {
 
         console.log(formData)
 
-        axios.post("http://localhost:8080/api/anime/series", formData, {
-            headers: {
-                "token": token
-            },})
-
-            .then((response) => {
-                console.log(response.data)
+        createEp(formData, {headers: {"token": token}})
+            .then((data) => {
+                console.log(data)
             })
 
             .catch((err) => {

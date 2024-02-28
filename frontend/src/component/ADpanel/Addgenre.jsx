@@ -1,16 +1,14 @@
 import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
-import axios from "axios";
+// import {useSelector} from "react-redux";
+import {createGenre} from "../ApiServis";
 
 export function Addgenre() {
     const {register, handleSubmit} = useForm()
-    const token = useSelector((state) => state.auth.value)
+    // const token = useSelector((state) => state.auth.value)
     const onSubmit = (data) => {
-
-        axios.post("http://localhost:8080/api/genre/add", {genreID: data.tags, animeID: data.anime})
-
-            .then((response) => {
-                console.log(response.data)
+        createGenre( {genreID: data.tags, animeID: data.anime})
+            .then((data) => {
+                console.log(data)
             })
 
             .catch((err) => {

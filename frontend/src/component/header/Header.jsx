@@ -1,35 +1,18 @@
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import axios from "axios";
-import {clearToken} from "../../state/slice/authSlice";
+import {useSelector} from "react-redux";
 import {Search} from "./Search";
 import Popup from "reactjs-popup";
 import {Login} from "../main/auth/Login";
 import {Reg} from "../main/auth/Reg";
-import {RandBtn} from "./RandBtn";
 export function Header() {
-    const [data, setData] = useState([])
     const token = useSelector((state) => state.auth.value)
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     // dispatch(clearToken())
-
-    useEffect(() => {
-        axios.get("http://localhost:8080/api/auth/profile", {headers: {"token": token}})
-            .then((response) => {
-                setData(response.data)
-                console.log(data)
-            })
-
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [token]);
 
     return (
         <header className="header">
-            <Link to="/main">
+            <Link to="/">
                 <div className="logo">
                     <span className="logo white">Ani</span><span className="logo red">Vi.one</span>
                 </div>
@@ -43,18 +26,14 @@ export function Header() {
                 token
                     ?   <div className="profile">
                             <Link to="/profile">
-                                {data.map((user) => (
-                                    <>
-                                        <p className="username">{user.username}</p>
-                                        {
-                                            user.roles == 9
-                                                ? <Link to="/admin">Admin panel</Link>
+                                <p className="username">{token[0].username}</p>
+                                {
+                                    token[0].roles === 9
+                                        ? <Link to="/admin">Admin panel</Link>
 
-                                                : <></>
+                                        : <></>
 
-                                        }
-                                    </>
-                                ))}
+                                }
                             </Link>
                         </div>
                     :

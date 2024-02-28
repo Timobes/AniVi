@@ -28,7 +28,8 @@ class authController {
                 const users = await db.query("SELECT * FROM users WHERE email = $1 AND passwords = $2", [email, pass.rows[0].passwords])
 
                 if(users.rows) {
-                    res.json(pass.rows[0].passwords)
+                    // res.json(pass.rows[0].passwords)
+                    res.json(users.rows)
                 } else {
                     res.json('Пользователя нет')
                 }

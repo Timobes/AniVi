@@ -7,14 +7,19 @@ import {Profile} from "./component/header/Profile";
 import {Reg} from "./component/main/auth/Reg";
 import {Login} from "./component/main/auth/Login";
 import {Admin} from "./component/ADpanel/Admin";
+import {User} from "./component/main/users/User";
 export function Routing() {
     return (
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path="/main" element={<Main />} />
+                <Route path="/" element={<Main />} />
+
                 <Route path="/anime/:id" element={<AnimePage />} />
                 <Route path="/profile" element={<Profile />} />
+
+                <Route path="/user/:id" element={<User />} />
+
 
                 <Route path="/reg" element={<Reg />} />
                 <Route path="/login" element={<Login />} />

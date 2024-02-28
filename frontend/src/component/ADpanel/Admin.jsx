@@ -1,45 +1,34 @@
-import {useForm} from "react-hook-form";
-import axios from "axios";
-import {useSelector} from "react-redux";
 import {LoadEp} from "./LoadEp";
 import {Addgenre} from "./Addgenre";
+import {CreateAnime} from "./CreateAnime";
+import {useSelector} from "react-redux";
 export function Admin() {
-    const {register, handleSubmit} = useForm()
     const token = useSelector((state) => state.auth.value)
-    const onSubmit = (data) => {
-        axios.post("http://localhost:8080/api/anime", {anime_title_rus: data.anime_title_rus, anime_title_eng: data.anime_title_eng, anime_title_jap: data.anime_title_jap, description: data.description, years: data.years, poster_url: data.poster_url}, {headers: {"token": token}})
-
-            .then((response) => {
-                console.log(response.data)
-            })
-
-            .catch((err) => {
-                console.log(err)
-            })
-    }
 
     return (
         <div className="admin">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" {...register('anime_title_rus')} placeholder="Название на Рус"/>
-                <br/>
-                <input type="text" {...register('anime_title_eng')} placeholder="Название на Япо"/>
-                <br/>
-                <input type="text" {...register('anime_title_jap')} placeholder="Название на англ"/>
-                <br/>
-                <input type="text" {...register('description')} placeholder="Описание"/>
-                <br/>
-                <input type="date" {...register('years')} placeholder="Год выхода"/>
-                <br/>
-                <input type="text" {...register('poster_url')} placeholder="Ссылка на постер"/>
-                <br/>
+            {
+                token.length > 0
+                    ?
+                        token.map((role) => (
+                             role.roles == 9
+                                ?
+                                 <>
+                                     <CreateAnime />
+                                     <hr/>
+                                     <LoadEp />
+                                     <hr/>
+                                     <Addgenre />
+                                 </>
 
-                <input type="submit" placeholder="Создать аниме"/>
-            </form>
-            <hr/>
-            <LoadEp />
-            <hr/>
-            <Addgenre />
+                                :
+                                    <h1>У вас недостаточно прав!</h1>
+
+                        ))
+                    :
+                        <h1>Войдите в аккаунт!</h1>
+            }
+
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  value: '', // Изначально значение токена пустое
+  value: [], // Изначально значение токена пустое
 };
 
 export const authSlice = createSlice({

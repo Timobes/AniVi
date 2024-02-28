@@ -3,6 +3,9 @@
   padding: 0;
 }
 
+ul, li {
+  list-style: none;
+}
 
 body {
   background-color: #1F2834;
@@ -358,8 +361,36 @@ a:visited {
   border-radius: 5px;
 }
 
+.b-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #151E28;
+}
 
+.tags-btn {
+  width: 120px;
+  height: 60px;
 
+  color: #fff;
+
+  background-color: #151E28;
+  border: 0;
+}
+
+.tags-btn:hover {
+  cursor: pointer;
+}
+
+.b-more {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.b-review {
+  color: #fff;
+}
 
 .footer {
   text-align: center;

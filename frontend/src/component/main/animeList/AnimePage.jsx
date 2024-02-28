@@ -1,11 +1,15 @@
 import ReactPlayer from "react-player";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getEp, getOneAnime} from "../../ApiServis";
-import axios from "axios";
+import {getEp, getGenre, getOneAnime} from "../../ApiServis";
+import {Review} from "./review/Review";
+import {CreateReview} from "./review/CreateReview";
+import {useSelector} from "react-redux";
 
 export function AnimePage() {
     const {id} = useParams()
+
+    const token = useSelector((state) => state.auth.value)
 
     const [data, setData] = useState([])
     const [ep, setEp] = useState([])
@@ -40,16 +44,15 @@ export function AnimePage() {
     }, [id])
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/genre/anime/${id}`)
-            .then((response) => {
-                setGenre(response.data)
+        getGenre(id)
+            .then((data) => {
+                setGenre(data)
             })
 
             .catch((err) => {
                 console.log(err)
             })
     }, [id]);
-
 
     console.log('ep = ', ep)
     console.log('current = ', currentEpisode)
@@ -60,8 +63,8 @@ export function AnimePage() {
             {
                 data.map((anime) => (
                     <div className="animepage">
-                        <p className="AP-name">{data.anime_title_eng}</p>
-                        <p className="AP-jap-name">{data.anime_title_jap}</p>
+                        <p className="AP-name">{anime.anime_title_eng}</p>
+                        <p className="AP-jap-name">{anime.anime_title_jap}</p>
                         {
                             ep.length > 0
                                 ?
@@ -113,6 +116,19 @@ export function AnimePage() {
                                 </p>
                             </div>
                         </div>
+
+                        <br/>
+                        {
+                            token.length > 0
+                                ?
+                                    <CreateReview anid={id}/>
+                                :
+                                    <h1>Войдите, чтобы оставить отзыв!</h1>
+
+                        }
+                        <br/>
+
+                        <Review anid={id}/>
                     </div>
                 ))
             }

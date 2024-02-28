@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {allAnime} from "../../ApiServis";
 import {Loadtags} from "../tags/Loadtags";
 
@@ -40,8 +40,10 @@ export function AnimeList() {
                         </div>
                     ))
                 }
-                {visibleItems < data.length && ( 
-                    <button onClick={handleShowMoreClick} className="login-btn">Показать больше</button>
+                {visibleItems < data.length && (
+                    <div className="b-more">
+                        <button onClick={handleShowMoreClick} className="login-btn">Показать больше</button>
+                    </div>
                 )}
             </div>
         </>
