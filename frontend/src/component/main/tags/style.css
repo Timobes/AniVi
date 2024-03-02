@@ -1,0 +1,33 @@
+.animeList2 {
+    width: 1570px;
+    margin: auto;
+
+    column-gap: 100px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.b-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #151E28;
+
+    width: 1570px;
+    margin: 60px auto 60px auto;
+}
+
+.tags-btn {
+    width: 120px;
+    height: 60px;
+
+    color: #fff;
+
+    background-color: #151E28;
+    border: 0;
+}
+
+.tags-btn:hover {
+    cursor: pointer;
+}

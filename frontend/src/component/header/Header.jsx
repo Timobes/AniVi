@@ -1,10 +1,12 @@
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {Search} from "./Search";
+import {Search} from "./Search/Search.jsx";
 import Popup from "reactjs-popup";
-import {Login} from "../main/auth/Login";
-import {Reg} from "../main/auth/Reg";
+import {Login} from "./auth/Login/Login";
+import {Reg} from "./auth/Reg/Reg";
+import './style.css'
 export function Header() {
+
     const token = useSelector((state) => state.auth.value)
 
     // const dispatch = useDispatch()

@@ -1,11 +1,11 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Header} from "./component/header/Header";
 import {Main} from "./component/main/Main";
-import {AnimePage} from "./component/main/animeList/AnimePage";
+import {AnimePage} from "./component/main/animeList/AnimePage/AnimePage";
 import {Footer} from "./component/footer/Footer";
-import {Profile} from "./component/header/Profile";
-import {Reg} from "./component/main/auth/Reg";
-import {Login} from "./component/main/auth/Login";
+import {Profile} from "./component/header/Profile/Profile";
+import {Reg} from "./component/header/auth/Reg/Reg";
+import {Login} from "./component/header/auth/Login/Login";
 import {Admin} from "./component/ADpanel/Admin";
 import {User} from "./component/main/users/User";
 export function Routing() {
@@ -28,7 +28,7 @@ export function Routing() {
 
                 <Route path="*" element={<h1>Error!</h1>} />
             </Routes>
-            <Footer />
+            {/*<Footer />*/}
         </BrowserRouter>
     )
 }

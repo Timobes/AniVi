@@ -1,0 +1,12 @@
+.review-delete-btn {
+    padding: 10px 20px 10px 20px;
+
+    background-color: #fff;
+    border: 0;
+}
+
+.review-delete-btn:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: #ee7272;
+}

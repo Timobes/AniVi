@@ -1,0 +1,14 @@
+.reg {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    width: 340px;
+    height: 340px;
+
+    color: #fff;
+    background-color: #14191E;
+}

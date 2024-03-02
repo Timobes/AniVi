@@ -1,8 +1,7 @@
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {allAnime} from "../../ApiServis";
-import {Loadtags} from "../tags/Loadtags";
-
+import './style.css'
 export function AnimeList() {
     const [data, setData] = useState([])
     const [visibleItems, setVisibleItems] = useState(5); // Начальное количество видимых элементов
@@ -23,15 +22,14 @@ export function AnimeList() {
 
     return (
         <>
-            <Loadtags />
-            <div className="animeList">
+            <div className="animeList" id='animeList'>
                 {
                     data.slice(0, visibleItems).map((anime) => (
                         <div>
                             <div>
                                 <Link to={`/anime/${anime.anime_id}`}>
                                     <div className="anime--block">
-                                        <img src={anime.poster_url} alt="anime--img" className="anime--img"/>
+                                        <img src={anime.poster_url} alt="" className="anime--img" />
                                         <p className="anime--name">{anime.anime_title_eng}</p>
                                         <p className="anime--year"> {new Date(anime.years).toLocaleDateString()}</p>
                                     </div>

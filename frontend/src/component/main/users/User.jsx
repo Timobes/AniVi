@@ -30,16 +30,19 @@ export function User() {
 
 
     return (
-        <div>
-            {data.map((user) => (
-                <div>
-                    <div>ID = {user.user_id}</div>
-                    <br/>
-                    <div>Email = {user.email}</div>
-                    <br/>
-                    <div>Username = {user.username}</div>
-                </div>
-            ))}
+        <div className="profile">
+            {
+                data.length > 0
+                    ?
+                        data.map((user) => (
+                                <div className="b-profile">
+                                    <div className="profile-name">{user.username}</div>
+                                </div>
+                        ))
+                    :
+                        <h1>Профиль удалён, либо не существует</h1>
+            }
+
         </div>
     )
 }

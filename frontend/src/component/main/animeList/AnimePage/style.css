@@ -1,0 +1,88 @@
+.animepage {
+    width: 1280px;
+    margin: auto;
+}
+
+.AP-name {
+    color: #FFF;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.AP-jap-name {
+    color: #909090;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    margin-bottom: 20px;
+}
+
+.AP-series {
+    display: flex;
+    flex-wrap: wrap;
+
+    column-gap: 20px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 5px;
+    background: #293440;
+}
+
+.ep-btn {
+    width: 100px;
+    height: 40px;
+
+    text-align: center;
+    color: #fff;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border: 0 solid #151E28;
+    border-radius: 5px;
+    background: #151E28;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ep-btn:hover {
+    cursor: pointer;
+}
+
+.AP-logo {
+    width: 230px;
+    height: 340px;
+}
+
+.AP-desc-all {
+    display: flex;
+
+    margin-top: 50px;
+}
+
+.AP-desc-block {
+    color: #fff;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 91.523%;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 30px;
+
+}
+
+.AP-desc-block p {
+    margin-bottom: 20px;
+}

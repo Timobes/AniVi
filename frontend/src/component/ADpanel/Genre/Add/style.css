@@ -1,0 +1,16 @@
+.create-anime-inp {
+    width: 400px;
+    height: 50px;
+
+    font-size: 22px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    border: 0;
+}
+
+.admin-elem {
+    display: flex;
+    flex-direction: column;
+}

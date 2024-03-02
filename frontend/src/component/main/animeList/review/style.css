@@ -1,0 +1,35 @@
+.review-main {
+    display: flex;
+    flex-wrap: wrap;
+
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.b-review {
+    width: 320px;
+
+    background-color: #293440;
+    color: #fff;
+
+    padding: 20px;
+}
+
+.b-review p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.review-username {
+    font-size: 24px;
+
+}
+
+.review-date {
+    font-size: 18px;
+    color: #B8B8B8;
+}
+
+.review-text {
+    font-size: 20px;
+}

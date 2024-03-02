@@ -70,9 +70,9 @@ export const createGenre = async (data) => {
         console.log(e)
     }
 }
-export const createEp = async (data, config) => {
+export const createEp = async (formData, config) => {
     try {
-        const response = await axiosInstance.post(`/api/anime/series`, data, config)
+        const response = await axiosInstance.post(`/api/anime/series`, formData, config)
         return response.data
     } catch (e) {
         console.log(e)

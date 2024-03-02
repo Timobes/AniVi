@@ -1,13 +1,11 @@
 const express = require('express')
 const app = express()
 
-const {response, json} = require("express");
 const cors = require('cors')
 const mainRouter = require('./router/mainRouter')
 const bodyParser = require('body-parser')
 
 const port = 8080
-
 app.use(express.static("uploads"))
 app.use(cors())
 app.use(express.json())
