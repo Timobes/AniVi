@@ -4,12 +4,20 @@
     {
       "src": "main.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "uploads/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "router/mainRouter.js"
+      "src": "/((?!.*\\.\\w+$).*)",
+      "dest": "/main.js"
+    },
+    {
+      "src": "/(.+\\.[a-z]+)$",
+      "dest": "/uploads/$1"
     }
   ]
 }
