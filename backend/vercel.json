@@ -13,7 +13,7 @@
   "routes": [
     {
       "src": "/((?!.*\\.\\w+$).*)",
-      "dest": "/main.js"
+      "dest": "/router/mainRouter.js"
     },
     {
       "src": "/(.+\\.[a-z]+)$",
