@@ -9,6 +9,7 @@ export function DelReview(props) {
             delReview(props.aniid)
                 .then((data) => {
                     console.log(data)
+                    window.location.reload();
                 })
 
                 .catch((err) => {

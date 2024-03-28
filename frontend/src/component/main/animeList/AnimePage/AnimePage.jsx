@@ -1,12 +1,14 @@
 import ReactPlayer from "react-player";
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import Popup from "reactjs-popup";
 import {getEp, getGenre, getOneAnime} from "../../../ApiServis";
 import {Review} from "../review/Review";
 import {CreateReview} from "../review/Create/CreateReview";
 import {useSelector} from "react-redux";
 import './style.css'
+
+const CommentContext = createContext(false)
 
 export function AnimePage() {
     const {id} = useParams()
@@ -18,6 +20,8 @@ export function AnimePage() {
     const [genre, setGenre] = useState([])
 
     const [currentEpisode, setCurrentEpisode] = useState(0);
+
+    const [isNewComment, setIsNewComment] = useState(false)
 
     const handleEpisodeChange = (episodeNumber) => {
         setCurrentEpisode(episodeNumber);
@@ -122,17 +126,17 @@ export function AnimePage() {
                         </div>
 
                         <br/>
-                        {
-                            token.length > 0
-                                ?
-                                <Popup trigger={<button className="header-login-btn">Оставить отзыв</button>} modal position="center">
-                                    <CreateReview anid={id}/>
-                                </Popup>
-                                :
+                            {
+                                token.length > 0
+                                    ?
+                                    <Popup trigger={<button className="header-login-btn">Оставить отзыв</button>} modal position="center">
+                                        <CreateReview anid={id}/>
+                                    </Popup>
+                                    :
                                     <h1>Войдите, чтобы оставить отзыв!</h1>
 
-                        }
-                        <br/>
+                            }
+                            <br/>
                         <Review anid={id}/>
                     </div>
                 ))

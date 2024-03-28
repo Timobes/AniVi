@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {createReview} from "../../../../ApiServis";
 import {useSelector} from "react-redux";
 import './style.css'
+import {createContext, useContext} from "react";
 
 export function CreateReview(props) {
     const token = useSelector((state) => state.auth.value)
@@ -9,10 +10,13 @@ export function CreateReview(props) {
 
     const onSubmit = (data) => {
         const date = new Date().toLocaleDateString().replaceAll('.','-')
+
         console.log('date = ',date)
+
         createReview({userid: token[0].user_id, text: data.text, dates: date}, props.anid)
             .then((data) => {
                 console.log(data)
+                window.location.reload();
             })
 
             .catch((err) => {
