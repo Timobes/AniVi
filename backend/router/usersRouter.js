@@ -6,7 +6,6 @@ const userController = require('../controller/userController')
 // userRouter.get('/', userController.getUsers)
 userRouter.get('/', userController.getUsers)
 
-// userRouter.get('/:id', userController.getUser)
 userRouter.get('/:id', userController.getUser)
 
 module.exports = userRouter
